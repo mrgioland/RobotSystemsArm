@@ -23,6 +23,7 @@ class moveClass():
         self.first_move = True
         self.world_X, self.world_Y = 0, 0
         self.world_x, self.world_y = 0, 0
+        self.rotation_angle = 0
         self.servo1 = 500
         self.detect_color = target_color
         self.coordinate = {
@@ -47,7 +48,6 @@ class moveClass():
     def move(self):
         unreachable = False
         track = False
-        rotation_angle = 0
         __isRunning = True
 
         while True:
@@ -58,7 +58,7 @@ class moveClass():
                 action_finish = False
                 Board.setBusServoPulse(1, self.servo1 - 280, 500)
 
-                servo2_angle = getAngle(self.world_X, self.world_Y, rotation_angle)
+                servo2_angle = getAngle(self.world_X, self.world_Y, self.rotation_angle)
                 Board.setBusServoPulse(2, servo2_angle, 500)
                 time.sleep(0.8)
 
